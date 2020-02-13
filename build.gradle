@@ -1,0 +1,41 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+version = '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile "com.jhlabs:filters:2.0.235"
+    compile "org.slf4j:slf4j-api:1.6.0"
+    compile "commons-collections:commons-collections:3.2"
+    compile "javax.servlet:servlet-api:2.5"
+    compile "javax.servlet.jsp:jsp-api:2.1"
+    compile "commons-cli:commons-cli:1.3.1"
+    compile "com.github.dpaukov:combinatoricslib3:3.3.0"
+
+}
+
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File',  
+        	'Implementation-Version': version,
+        	'Main-Class': 'generator.Generator'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+
+jar {
+    baseName = 'captcha'
+    version =  '0.1.0'
+}
+
+mainClassName = 'generator.Generator'
