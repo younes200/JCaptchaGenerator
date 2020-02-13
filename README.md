@@ -3,7 +3,7 @@
 ## Captcha Generator
 
 Captcha generator based on [JCaptcha](https://jcaptcha.atlassian.net/) used CNN training.
-
+The repo includes modified version of JCaptcha to customise generators, fill free to do the same ;)
 
 ## RUN:
 
